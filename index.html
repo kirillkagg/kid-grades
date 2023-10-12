@@ -1,300 +1,364 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>My Grades</title>
-      <link rel="icon" href="favicon.ico" type="image/x-icon">
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-      <meta charset="UTF-8" />
-      <style>
-         * {
-         font-family: "Open Sans", sans-serif;
-         }
-         td {
-         }
-         .subject-name {
-         flex: 1;
-         }
-         .marks {
-         flex: 2;
-         display: flex;
-         align-items: center;
-         }
-         .mark-box {
-         text-align: center;
-         margin: 2px 2px 0;
-         padding: 0;
-         border-radius: 2px;
-         width: 17px;
-         height: 20px;
-         display: inline-block;
-         line-height: 20px;
-         }
-         .mark-low {
-         background-color: #cf3838;
-         color: #fff;
-         }
-         .mark-medium {
-         background-color: #ff8f00;
-         color: #fff;
-         }
-         .mark-high {
-         background-color: #4b9a25;
-         color: #fff;
-         }
-         .average {
-         flex: 1;
-         }
-         .mark-average {
-         text-align: center;
-         margin: 0 2px;
-         padding: 0;
-         border-radius: 2px;
-         width: 37.5px;
-         height: 20px;
-         display: inline-block;
-         line-height: 20px;
-         }
-         #add-mark {
-         background-color: #2f80ed;
-         color: #fff;
-         cursor: pointer;
-         transition: background-color 0.2s ease-in-out;
-         border: none;
-         border-radius: 8px;
-         padding: 5px 12px;
-         margin: 1px;
-         font-size: 14px;
-         }
-         .evr {
-         background: #eff6ff;
-         padding: 20px 0 70px 0;
-         height: 100%;
-         overflow-y: hidden;
-         }
-         html, body {
-         height: 100%;
-         margin: 0;
-         padding: 0;
-         overflow: hidden;
-         }
-      </style>
-   </head>
-   <body>
-      <h1 style="color: #0f3159; user-select: none; font-weight: bold; font-size: 2em; padding: 0 0 0 100px;">My Grades</h1>
-      <div class="evr" style="background: #eff6ff; padding: 20px 0 70px 0; height: 100vh">
-         <div class="ev" style="margin: 0 auto; width: 940px; box-shadow: 0 8px 16px rgba(143,149,178,0.15); border-radius: 12px; background: #fff">
-            <div class="top" style="display: flex; padding: 20px 16px; -webkit-box-pack: justify; justify-content: space-between; position: relative;">
-               <div class="year" data-test-id="selected-groups" style="height 33px; width: 219.73; display: flex; -webkit-box-align: center; align-items: center; margin-right: 30px;">
-                  <div class="mQGb_">
-                     <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                           d="M8.18417 14.5705C8.3865 14.8016 8.5 15.1135 8.5 15.4386C8.5 15.7637 8.3865 16.0757 8.18417 16.3067C8.08482 16.4208 7.96639 16.5113 7.83578 16.5732C7.70518 16.635 7.56499 16.6668 7.4234 16.6668C7.2818 16.6668 7.14162 16.635 7.01101 16.5732C6.88041 16.5113 6.76198 16.4208 6.66262 16.3067L0.64866 9.36913C0.446613 9.13759 0.333333 8.82542 0.333333 8.50016C0.333333 8.17491 0.446613 7.86274 0.64866 7.63119L6.66263 0.693623C6.76198 0.579565 6.88041 0.488987 7.01102 0.427161C7.14162 0.365335 7.2818 0.333496 7.4234 0.333496C7.565 0.333496 7.70518 0.365335 7.83578 0.427161C7.96639 0.488987 8.08482 0.579565 8.18417 0.693623C8.3865 0.92464 8.5 1.2366 8.5 1.56171C8.5 1.88681 8.3865 2.19877 8.18417 2.42979L3.25209 8.50283L8.18417 14.5705Z"
-                           fill="#2F80ED"
-                           ></path>
-                     </svg>
-                  </div>
-                  <div class="_4d5W" style="display: block; color: #0f3159; font-weight: 600; font-size: 24px; line-height: 33px; margin: 0 10px; white-space: nowrap;">2022/2023 учебный год</div>
-                  <div class="LtaDO">
-                     <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                           d="M0.815825 2.42946C0.613498 2.19845 0.499999 1.88648 0.499999 1.56138C0.499999 1.23628 0.613498 0.924314 0.815825 0.693296C0.915178 0.579239 1.03361 0.488661 1.16421 0.426834C1.29482 0.365007 1.435 0.33317 1.5766 0.33317C1.71819 0.33317 1.85838 0.365007 1.98898 0.426834C2.11959 0.488661 2.23802 0.579239 2.33737 0.693296L8.35134 7.63086C8.55339 7.86241 8.66667 8.17458 8.66667 8.49984C8.66667 8.82509 8.55339 9.13726 8.35134 9.36881L2.33737 16.3064C2.23802 16.4204 2.11959 16.511 1.98898 16.5728C1.85838 16.6347 1.7182 16.6665 1.5766 16.6665C1.435 16.6665 1.29482 16.6347 1.16422 16.5728C1.03361 16.511 0.915179 16.4204 0.815825 16.3064C0.613498 16.0754 0.5 15.7634 0.5 15.4383C0.5 15.1132 0.613498 14.8012 0.815825 14.5702L5.74791 8.49717L0.815825 2.42946Z"
-                           fill="#2F80ED"
-                           ></path>
-                     </svg>
-                  </div>
-               </div>
-               <div class="CH6hS" style="display: flex; margin-left: auto;">
-                  <a href="analys.html" style="color: #000; text-decoration: none;">
-                     <div
-                        class="WOCpW"
-                        data-test-id="status-hint"
-                        style="max-width: 283px; height: 32px; box-sizing: border-box; display: flex; -webkit-box-align: center; align-items: center; padding: 2px 14px; border-radius: 12px; font-weight: 600; font-size: 10px; background: #eff6ff;">
-                        <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; flex-shrink: 0;">
-                           <path
-                              d="M14.4002 4.01209C14.4002 3.12575 13.6839 2.40723 12.8002 2.40723C11.9165 2.40723 11.2002 3.12575 11.2002 4.01209V16.851C11.2002 17.7373 11.9165 18.4559 12.8002 18.4559C13.6839 18.4559 14.4002 17.7373 14.4002 16.851V4.01209Z"
-                              fill="#BED639"
-                              ></path>
-                           <path
-                              d="M19.2 9.62928C19.2 8.74294 18.4837 8.02441 17.6 8.02441C16.7163 8.02441 16 8.74294 16 9.62928V16.8512C16 17.7375 16.7163 18.456 17.6 18.456C18.4837 18.456 19.2 17.7375 19.2 16.8512V9.62928Z"
-                              fill="#F69220"
-                              ></path>
-                           <path
-                              d="M23.9998 14.4437C23.9998 13.5574 23.2835 12.8389 22.3998 12.8389C21.5161 12.8389 20.7998 13.5574 20.7998 14.4437V16.851C20.7998 17.7374 21.5161 18.4559 22.3998 18.4559C23.2835 18.4559 23.9998 17.7374 23.9998 16.851V14.4437Z"
-                              fill="#FED10D"
-                              ></path>
-                           <path
-                              d="M9.6 3.78444C9.6 3.22907 9.26368 2.71705 8.7252 2.58762C8.2336 2.46946 7.72333 2.40723 7.2 2.40723C3.22355 2.40723 0 5.99983 0 10.4315C0 14.8632 3.22355 18.4559 7.2 18.4559C7.72333 18.4559 8.2336 18.3937 8.7252 18.2755C9.26368 18.146 9.6 17.634 9.6 17.0786V16.516C9.6 15.7564 8.75728 15.2461 8 15.2461C5.79086 15.2461 4 13.0906 4 10.4315C4 7.77252 5.79086 5.61695 8 5.61695C8.75728 5.61695 9.6 5.10669 9.6 4.34713V3.78444Z"
-                              fill="#0073AE"
-                              ></path>
-                        </svg>
-                        Нажмите для того чтобы посмотреть статистику успеваемости
-                     </div>
-                  </a>
-               </div>
+    <head>
+        <title>My Grades</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta charset="UTF-8" />
+        <style>
+            * {
+                font-family: "Open Sans", sans-serif;
+            }
+            td {
+            }
+            .subject-name {
+                flex: 1;
+            }
+            .marks {
+                flex: 2;
+                display: flex;
+                align-items: center;
+            }
+            .mark-box {
+                text-align: center;
+                margin: 2px 2px 0;
+                padding: 0;
+                border-radius: 2px;
+                width: 17px;
+                height: 20px;
+                display: inline-block;
+                line-height: 20px;
+            }
+            .mark-low {
+                background-color: #cf3838;
+                color: #fff;
+            }
+            .mark-medium {
+                background-color: #ff8f00;
+                color: #fff;
+            }
+            .mark-high {
+                background-color: #4b9a25;
+                color: #fff;
+            }
+            .average {
+                flex: 1;
+            }
+            .mark-average {
+                text-align: center;
+                margin: 0 2px;
+                padding: 0;
+                border-radius: 2px;
+                width: 37.5px;
+                height: 20px;
+                display: inline-block;
+                line-height: 20px;
+            }
+            #add-mark {
+                background-color: #2f80ed;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;
+                border: none;
+                border-radius: 8px;
+                padding: 5px 12px;
+                margin: 1px;
+                font-size: 14px;
+            }
+            .evr {
+                background: #eff6ff;
+                padding: 20px 0 70px 0;
+                height: 100%;
+                overflow-y: hidden;
+            }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header-anon" id="header-anon" style="height: 79.88px; background-color: #fff; position: relative; z-index: 1;">
+            <div class="colored-line" style="width: 100%; height: 4px;">
+                <div class="colored-line__item colored-line__item_blue" style="background-color: #4cc0e2; height: 100%; width: 20%; float: left;"></div>
+                <div class="colored-line__item colored-line__item_green" style="background-color: #4cc02e; height: 100%; width: 20%; float: left;"></div>
+                <div class="colored-line__item colored-line__item_yellow" style="background-color: #e2d44c; height: 100%; width: 20%; float: left;"></div>
+                <div class="colored-line__item colored-line__item_orange" style="background-color: #e2884c; height: 100%; width: 20%; float: left;"></div>
+                <div class="colored-line__item colored-line__item_violet" style="background-color: #824ce2; height: 100%; width: 20%; float: left;"></div>
             </div>
-            <div class="taable" style="width: 100%; padding: 0 12px 12px 12px; box-sizing: border-box;">
-               <table style="min-width: 100%; border-spacing: 0; border-radius: 12px; border: 1px solid #e5eaf0; display: table; border-collapse: separate; box-sizing: border-box; text-indent: initial; ">
-                  <thead style="display: table-header-group; vertical-align: middle;">
-                     <tr style="display: table-row; vertical-align: inherit; border-color: inherit;">
-                        <th style="padding-left: 12px; text-align: left; font-weight: 400; font-size: 11px; line-height: 15px; white-space: nowrap; padding: 8px; border-bottom: 1px solid #e5eaf0;">Предмет</th>
-                        <th
-                           style="font-weight: 400; font-size: 11px; line-height: 15px; white-space: nowrap; padding: 8px; border-bottom: 1px solid #e5eaf0; display: table-cell; vertical-align: inherit; text-align: -internal-center; "
-                           ></th>
-                        <th
-                           style="font-weight: 400; font-size: 11px; line-height: 15px; white-space: nowrap; padding: 8px; border-bottom: 1px solid #e5eaf0; display: table-cell; vertical-align: inherit; text-align: -internal-center; border-left: 1px solid #e5eaf0;"
-                           >
-                           Средний балл
-                        </th>
-                     </tr>
-                  </thead>
-                  <tbody id="grades">
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Русский язык</td>
-                        <td id="russian-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0; ">
-                           <input type="text" class="subject-input" id="russian-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="russian-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Литература</td>
-                        <td id="obzh-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="obzh-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="obzh-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Математика</td>
-                        <td id="native-literature-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="native-literature-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="native-literature-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Окружающий мир</td>
-                        <td id="astronomy-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="astronomy-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="astronomy-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Технология</td>
-                        <td id="social-studies-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="social-studies-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="social-studies-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Английский язык</td>
-                        <td id="informatics-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="informatics-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="informatics-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">ИЗО</td>
-                        <td id="physics-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="physics-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="physics-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Музыка</td>
-                        <td id="chemistry-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="chemistry-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="chemistry-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Физкультура</td>
-                        <td id="physics-problems-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="physics-problems-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="physics-problems-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Информатика</td>
-                        <td id="algebra-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
-                           <input type="text" class="subject-input" id="algebra-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="algebra-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                     <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px">
-                        <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">ОРКиСЭ</td>
-                        <td id="chemistry-problems-marks" style="width: 634.38px">
-                           <input type="text" class="subject-input" id="chemistry-problems-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
-                        </td>
-                        <td id="chemistry-problems-average" style="width: 71.17px; border-left: 1px solid #e5eaf0; text-align: center;"></td>
-                     </tr>
-                  </tbody>
-               </table>
+
+            <div class="header-anon__content" style="width: 960px; padding-left: 0; padding-right: 0; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 102px;">
+                <div class="header-anon__logotype" style="position: relative; bottom: 11.94px; z-index: 1;">
+                    <img src="https://static.dnevnik.ru/img/logotypes/logotype.png" alt="Дневник.ру" style="vertical-align: middle; border: 0;" />
+                </div>
             </div>
-            <div id="results" style="padding: 0 12px 12px 12px;">
-               <button
-                  type="button"
-                  id="add-mark"
-                  style="background-color: #2f80ed; color: #fff; cursor: pointer; transition: background-color 0.2s ease-in-out; border: none; border-radius: 8px; padding: 5px 12px; margin: 1px ; font-size: 14px;"
-                  >
-               Добавить
-               </button>
+        </header>
+        <div class="evr" style="background: #eff6ff; padding: 20px 0 70px 0; height: 100vh;">
+            <div class="ev" style="margin: 0 auto; width: 940px; box-shadow: 0 8px 16px rgba(143, 149, 178, 0.15); border-radius: 12px; background: #fff;">
+                <div class="top" style="display: flex; padding: 20px 16px; -webkit-box-pack: justify; justify-content: space-between; position: relative;">
+                    <div class="year" data-test-id="selected-groups" style="height 33px; width: 219.73; display: flex; -webkit-box-align: center; align-items: center; margin-right: 30px;">
+                        <div class="mQGb_">
+                            <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.18417 14.5705C8.3865 14.8016 8.5 15.1135 8.5 15.4386C8.5 15.7637 8.3865 16.0757 8.18417 16.3067C8.08482 16.4208 7.96639 16.5113 7.83578 16.5732C7.70518 16.635 7.56499 16.6668 7.4234 16.6668C7.2818 16.6668 7.14162 16.635 7.01101 16.5732C6.88041 16.5113 6.76198 16.4208 6.66262 16.3067L0.64866 9.36913C0.446613 9.13759 0.333333 8.82542 0.333333 8.50016C0.333333 8.17491 0.446613 7.86274 0.64866 7.63119L6.66263 0.693623C6.76198 0.579565 6.88041 0.488987 7.01102 0.427161C7.14162 0.365335 7.2818 0.333496 7.4234 0.333496C7.565 0.333496 7.70518 0.365335 7.83578 0.427161C7.96639 0.488987 8.08482 0.579565 8.18417 0.693623C8.3865 0.92464 8.5 1.2366 8.5 1.56171C8.5 1.88681 8.3865 2.19877 8.18417 2.42979L3.25209 8.50283L8.18417 14.5705Z"
+                                    fill="#2F80ED"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="_4d5W" style="display: block; color: #0f3159; font-weight: 600; font-size: 24px; line-height: 33px; margin: 0 10px; white-space: nowrap;">2022/2023 учебный год</div>
+                        <div class="LtaDO">
+                            <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.815825 2.42946C0.613498 2.19845 0.499999 1.88648 0.499999 1.56138C0.499999 1.23628 0.613498 0.924314 0.815825 0.693296C0.915178 0.579239 1.03361 0.488661 1.16421 0.426834C1.29482 0.365007 1.435 0.33317 1.5766 0.33317C1.71819 0.33317 1.85838 0.365007 1.98898 0.426834C2.11959 0.488661 2.23802 0.579239 2.33737 0.693296L8.35134 7.63086C8.55339 7.86241 8.66667 8.17458 8.66667 8.49984C8.66667 8.82509 8.55339 9.13726 8.35134 9.36881L2.33737 16.3064C2.23802 16.4204 2.11959 16.511 1.98898 16.5728C1.85838 16.6347 1.7182 16.6665 1.5766 16.6665C1.435 16.6665 1.29482 16.6347 1.16422 16.5728C1.03361 16.511 0.915179 16.4204 0.815825 16.3064C0.613498 16.0754 0.5 15.7634 0.5 15.4383C0.5 15.1132 0.613498 14.8012 0.815825 14.5702L5.74791 8.49717L0.815825 2.42946Z"
+                                    fill="#2F80ED"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="CH6hS" style="display: flex; margin-left: auto;">
+                        <a href="analys.html" style="color: #000; text-decoration: none;">
+                            <div
+                                class="WOCpW"
+                                data-test-id="status-hint"
+                                style="
+                                    max-width: 283px;
+                                    height: 32px;
+                                    box-sizing: border-box;
+                                    display: flex;
+                                    -webkit-box-align: center;
+                                    align-items: center;
+                                    padding: 2px 14px;
+                                    border-radius: 12px;
+                                    font-weight: 600;
+                                    font-size: 10px;
+                                    background: #eff6ff;
+                                "
+                            >
+                                <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; flex-shrink: 0;">
+                                    <path
+                                        d="M14.4002 4.01209C14.4002 3.12575 13.6839 2.40723 12.8002 2.40723C11.9165 2.40723 11.2002 3.12575 11.2002 4.01209V16.851C11.2002 17.7373 11.9165 18.4559 12.8002 18.4559C13.6839 18.4559 14.4002 17.7373 14.4002 16.851V4.01209Z"
+                                        fill="#BED639"
+                                    ></path>
+                                    <path
+                                        d="M19.2 9.62928C19.2 8.74294 18.4837 8.02441 17.6 8.02441C16.7163 8.02441 16 8.74294 16 9.62928V16.8512C16 17.7375 16.7163 18.456 17.6 18.456C18.4837 18.456 19.2 17.7375 19.2 16.8512V9.62928Z"
+                                        fill="#F69220"
+                                    ></path>
+                                    <path
+                                        d="M23.9998 14.4437C23.9998 13.5574 23.2835 12.8389 22.3998 12.8389C21.5161 12.8389 20.7998 13.5574 20.7998 14.4437V16.851C20.7998 17.7374 21.5161 18.4559 22.3998 18.4559C23.2835 18.4559 23.9998 17.7374 23.9998 16.851V14.4437Z"
+                                        fill="#FED10D"
+                                    ></path>
+                                    <path
+                                        d="M9.6 3.78444C9.6 3.22907 9.26368 2.71705 8.7252 2.58762C8.2336 2.46946 7.72333 2.40723 7.2 2.40723C3.22355 2.40723 0 5.99983 0 10.4315C0 14.8632 3.22355 18.4559 7.2 18.4559C7.72333 18.4559 8.2336 18.3937 8.7252 18.2755C9.26368 18.146 9.6 17.634 9.6 17.0786V16.516C9.6 15.7564 8.75728 15.2461 8 15.2461C5.79086 15.2461 4 13.0906 4 10.4315C4 7.77252 5.79086 5.61695 8 5.61695C8.75728 5.61695 9.6 5.10669 9.6 4.34713V3.78444Z"
+                                        fill="#0073AE"
+                                    ></path>
+                                </svg>
+                                Нажмите для того чтобы посмотреть статистику успеваемости
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="taable" style="width: 100%; padding: 0 12px 12px 12px; box-sizing: border-box;">
+                    <table style="min-width: 100%; border-spacing: 0; border-radius: 12px; border: 1px solid #e5eaf0; display: table; border-collapse: separate; box-sizing: border-box; text-indent: initial;">
+                        <thead style="display: table-header-group; vertical-align: middle;">
+                            <tr style="display: table-row; vertical-align: inherit; border-color: inherit;">
+                                <th style="padding-left: 12px; text-align: left; font-weight: 400; font-size: 11px; line-height: 15px; white-space: nowrap; padding: 8px; border-bottom: 1px solid #e5eaf0;">Предмет</th>
+                                <th
+                                    style="
+                                        font-weight: 400;
+                                        font-size: 11px;
+                                        line-height: 15px;
+                                        white-space: nowrap;
+                                        padding: 8px;
+                                        border-bottom: 1px solid #e5eaf0;
+                                        display: table-cell;
+                                        vertical-align: inherit;
+                                        text-align: -internal-center;
+                                    "
+                                ></th>
+                                <th
+                                    style="
+                                        font-weight: 400;
+                                        font-size: 11px;
+                                        line-height: 15px;
+                                        white-space: nowrap;
+                                        padding: 8px;
+                                        border-bottom: 1px solid #e5eaf0;
+                                        display: table-cell;
+                                        vertical-align: inherit;
+                                        text-align: -internal-center;
+                                        border-left: 1px solid #e5eaf0;
+                                    "
+                                >
+                                    Средний балл
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="grades">
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Русский язык
+                                </td>
+                                <td id="russian-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="russian-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="russian-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Литература
+                                </td>
+                                <td id="obzh-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="obzh-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="obzh-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Математика
+                                </td>
+                                <td id="native-literature-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="native-literature-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="native-literature-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Окружающий мир
+                                </td>
+                                <td id="astronomy-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="astronomy-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="astronomy-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Технология
+                                </td>
+                                <td id="social-studies-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="social-studies-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="social-studies-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Английский язык
+                                </td>
+                                <td id="informatics-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="informatics-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="informatics-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">ИЗО</td>
+                                <td id="physics-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="physics-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="physics-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">Музыка</td>
+                                <td id="chemistry-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="chemistry-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="chemistry-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Физкультура
+                                </td>
+                                <td id="physics-problems-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="physics-problems-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="physics-problems-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e5eaf0; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">
+                                    Информатика
+                                </td>
+                                <td id="algebra-marks" style="width: 634.38px; border-bottom: 1px solid #e5eaf0;">
+                                    <input type="text" class="subject-input" id="algebra-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="algebra-average" style="width: 71.17px; border-bottom: 1px solid #e5eaf0; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                            <tr style="max-width: 150px; color: #0f3159; margin: 6px 14px auto 20px; -webkit-box-align: center; align-items: center; height: 40px;">
+                                <td style="font-weight: 600; font-size: 14px; line-height: 19px; overflow: hidden; text-overflow: ellipsis; width: 204.78px; margin: 0; padding: 0 14px 0 20px;">ОРКиСЭ</td>
+                                <td id="chemistry-problems-marks" style="width: 634.38px;">
+                                    <input type="text" class="subject-input" id="chemistry-problems-marks-input" required style="width: 634.38px; height: 30px; border: 1px solid #fff; border-radius: 0.2rem;" />
+                                </td>
+                                <td id="chemistry-problems-average" style="width: 71.17px; border-left: 1px solid #e5eaf0; text-align: center;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="results" style="padding: 0 12px 12px 12px;">
+                    <button
+                        type="button"
+                        id="add-mark"
+                        style="background-color: #2f80ed; color: #fff; cursor: pointer; transition: background-color 0.2s ease-in-out; border: none; border-radius: 8px; padding: 5px 12px; margin: 1px; font-size: 14px;"
+                    >
+                        Добавить
+                    </button>
+                </div>
             </div>
-         </div>
-      </div>
-      <script>
-         document.getElementById('add-mark').addEventListener('click', () => {
-            const inputs = document.querySelectorAll('.subject-input');
-            inputs.forEach(input => {
-                const marksString = input.value.trim();
-                if (marksString !== '') {
-                    const marksCell = input.parentNode;
-                    const averageCell = marksCell.nextElementSibling;
-                    processMarks(marksString, marksCell, averageCell);
-                    input.remove();
-                }
+        </div>
+        <script>
+            document.getElementById("add-mark").addEventListener("click", () => {
+                const inputs = document.querySelectorAll(".subject-input");
+                inputs.forEach((input) => {
+                    const marksString = input.value.trim();
+                    if (marksString !== "") {
+                        const marksCell = input.parentNode;
+                        const averageCell = marksCell.nextElementSibling;
+                        processMarks(marksString, marksCell, averageCell);
+                        input.remove();
+                    }
+                });
             });
-         });
 
-         function processMarks(marksString, marksCell, averageCell) {
-         marksCell.innerHTML = '';
+            function processMarks(marksString, marksCell, averageCell) {
+                marksCell.innerHTML = "";
 
-         const marksArray = marksString.replace(/\s/g, '').split('');
-         for (let i = 0; i < marksArray.length; i++) {
-         const digit = marksArray[i];
-         const markBox = document.createElement('span');
-         markBox.textContent = digit;
-         markBox.classList.add('mark-box');
+                const marksArray = marksString.replace(/\s/g, "").split("");
+                for (let i = 0; i < marksArray.length; i++) {
+                    const digit = marksArray[i];
+                    const markBox = document.createElement("span");
+                    markBox.textContent = digit;
+                    markBox.classList.add("mark-box");
 
-         if (digit === '1' || digit === '2') {
-            markBox.classList.add('mark-low');
-         } else if (digit === '3') {
-            markBox.classList.add('mark-medium');
-         } else if (digit === '4' || digit === '5') {
-            markBox.classList.add('mark-high');
-         }
+                    if (digit === "1" || digit === "2") {
+                        markBox.classList.add("mark-low");
+                    } else if (digit === "3") {
+                        markBox.classList.add("mark-medium");
+                    } else if (digit === "4" || digit === "5") {
+                        markBox.classList.add("mark-high");
+                    }
 
-         marksCell.appendChild(markBox);
-         }
+                    marksCell.appendChild(markBox);
+                }
 
-         if (marksArray.length > 0) {
-         const totalMarks = marksArray.reduce((total, mark) => total + parseInt(mark), 0);
-         const markCount = marksArray.length;
-         const average = totalMarks / markCount;
+                if (marksArray.length > 0) {
+                    const totalMarks = marksArray.reduce((total, mark) => total + parseInt(mark), 0);
+                    const markCount = marksArray.length;
+                    const average = totalMarks / markCount;
 
-         const averageBox = document.createElement('span');
-         averageBox.textContent = average.toFixed(2);
-         averageBox.classList.add('mark-average');
+                    const averageBox = document.createElement("span");
+                    averageBox.textContent = average.toFixed(2);
+                    averageBox.classList.add("mark-average");
 
-         if (average >= 0 && average < 2.5) {
-            averageBox.classList.add('mark-low');
-         } else if (average >= 2.5 && average < 3.5) {
-            averageBox.classList.add('mark-medium');
-         } else {
-            averageBox.classList.add('mark-high');
-         }
+                    if (average >= 0 && average < 2.5) {
+                        averageBox.classList.add("mark-low");
+                    } else if (average >= 2.5 && average < 3.5) {
+                        averageBox.classList.add("mark-medium");
+                    } else {
+                        averageBox.classList.add("mark-high");
+                    }
 
-         averageCell.appendChild(averageBox);
-         }
-         }
-
-      </script>
-   </body>
+                    averageCell.appendChild(averageBox);
+                }
+            }
+        </script>
+    </body>
 </html>
